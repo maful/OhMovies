@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
         progressBar.setVisibility(View.INVISIBLE);
 
         if (API_KEY.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.required_api_key, Toast.LENGTH_LONG).show();
             return;
         }
 

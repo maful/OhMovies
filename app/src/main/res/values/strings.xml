@@ -5,4 +5,5 @@
     <string name="setting_language">Setting Language</string>
     <string name="movie_detail">Movie Detail</string>
     <string name="about_app">About</string>
+    <string name="required_api_key">Please obtain your API KEY first from themoviedb.org</string>
 </resources>

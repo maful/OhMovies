@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,6 +40,11 @@ public class TopRatedActivity extends BaseActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
+
+        if (API_KEY.isEmpty()) {
+            Toast.makeText(getApplicationContext(), R.string.required_api_key, Toast.LENGTH_LONG).show();
+            return;
+        }
 
         getSupportActionBar().setTitle(R.string.top_rated);
 
