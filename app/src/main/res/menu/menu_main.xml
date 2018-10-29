@@ -11,4 +11,9 @@
         android:id="@+id/about_app"
         android:title="@string/about_app"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/move"
+        android:title="Top Rated"
+        app:showAsAction="never" />
 </menu>

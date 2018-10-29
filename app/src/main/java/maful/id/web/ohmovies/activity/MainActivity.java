@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.about_app:
                 Toast.makeText(getApplicationContext(), "by Maful Prayoga Arnandi - 16.11.0046", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.move:
+                Intent i = new Intent(this, TopRatedActivity.class);
+                startActivity(i);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
