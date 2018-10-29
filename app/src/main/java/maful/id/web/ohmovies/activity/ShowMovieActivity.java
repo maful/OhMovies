@@ -3,11 +3,15 @@ package maful.id.web.ohmovies.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
 
 import maful.id.web.ohmovies.R;
 import maful.id.web.ohmovies.model.Movie;
@@ -24,6 +28,7 @@ public class ShowMovieActivity extends AppCompatActivity {
     private TextView tvReleaseDate;
     private TextView tvOverview;
     private ImageView ivBackdropImage;
+    private ProgressBar progressBar;
 
     public static String EXTRA_ID = "extra_id";
 
@@ -32,11 +37,18 @@ public class ShowMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_movie);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvReleaseDate = (TextView) findViewById(R.id.tv_release_date);
         tvOverview = (TextView) findViewById(R.id.tv_overview);
         ivBackdropImage = (ImageView) findViewById(R.id.iv_backdrop_image);
 
+        getMovie();
+    }
+
+    private void getMovie() {
         int movie_id = getIntent().getIntExtra(EXTRA_ID, 0);
 
         if (API_KEY.isEmpty()) {
@@ -46,9 +58,14 @@ public class ShowMovieActivity extends AppCompatActivity {
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Movie> call = apiService.getMovieDetails(movie_id, API_KEY);
+
+        progressBar.setVisibility(View.VISIBLE);
+
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
+                progressBar.setVisibility(View.INVISIBLE);
+
                 Log.d(TAG, "JSON: " + response.body().getTitle());
 
                 tvTitle.setText(response.body().getTitle());
@@ -64,9 +81,8 @@ public class ShowMovieActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
                 Log.e(TAG, t.toString());
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
-
-
     }
 }

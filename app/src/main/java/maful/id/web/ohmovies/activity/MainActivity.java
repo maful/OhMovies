@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -32,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
     private MoviesAdapter mMoviesAdapter;
     private List<Movie> movies;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         if (API_KEY.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
@@ -47,23 +52,33 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        fetchMovies();
+    }
+
+    private void fetchMovies() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<MoviesResponse> call = apiService.getNowPlayingMovies(API_KEY);
+
+        // progressbar
+        progressBar.setVisibility(View.VISIBLE);
+
         call.enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                int statusCode = response.code();
                 movies =  response.body().getResults();
                 Log.d(TAG, "Number of movies received: " + movies.size());
 
                 mMoviesAdapter = new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext());
                 recyclerView.setAdapter(mMoviesAdapter);
+
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(Call<MoviesResponse> call, Throwable t) {
                 Log.e(TAG, t.toString());
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
