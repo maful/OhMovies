@@ -5,5 +5,6 @@
     <string name="setting_language">Pengaturan Bahasa</string>
     <string name="movie_detail">Detail Film</string>
     <string name="about_app">Tentang Aplikasi</string>
+    <string name="show_on">Tayang pada</string>
     <string name="required_api_key">Silakan dapatkan API KEY Anda terlebih dahulu dari themoviedb.org</string>
 </resources>
