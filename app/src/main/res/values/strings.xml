@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OhMovies</string>
     <string name="setting_language">Setting Language</string>
+    <string name="movie_detail">Movie Detail</string>
 </resources>

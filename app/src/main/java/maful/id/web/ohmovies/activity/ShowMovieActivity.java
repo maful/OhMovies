@@ -2,6 +2,7 @@ package maful.id.web.ohmovies.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,12 +41,22 @@ public class ShowMovieActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
+        getSupportActionBar().setTitle(R.string.movie_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvReleaseDate = (TextView) findViewById(R.id.tv_release_date);
         tvOverview = (TextView) findViewById(R.id.tv_overview);
         ivBackdropImage = (ImageView) findViewById(R.id.iv_backdrop_image);
 
         getMovie();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void getMovie() {
