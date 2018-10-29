@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/now_playing"
+        android:title="@string/now_playing"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/move"
+        android:title="Top Rated"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/setting_language"
         android:title="@string/setting_language"
         app:showAsAction="never" />
@@ -12,8 +22,4 @@
         android:title="@string/about_app"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/move"
-        android:title="Top Rated"
-        app:showAsAction="never" />
 </menu>

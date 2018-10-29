@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TopRatedActivity extends AppCompatActivity {
+public class TopRatedActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final static String API_KEY = "4747721b1aabe643d9299dbcfad73933";
     private MoviesCardAdapter mMoviesCardAdapter;
