@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
                 startActivity(intent);
                 break;
+            case R.id.about_app:
+                Toast.makeText(getApplicationContext(), "by Maful Prayoga Arnandi - 16.11.0046", Toast.LENGTH_LONG).show();
+                break;
         }
 
         return super.onOptionsItemSelected(item);

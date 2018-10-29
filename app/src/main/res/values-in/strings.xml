@@ -2,4 +2,5 @@
     <string name="app_name">OhMovies</string>
     <string name="setting_language">Pengaturan Bahasa</string>
     <string name="movie_detail">Detail Film</string>
+    <string name="about_app">Tentang Aplikasi</string>
 </resources>
