@@ -2,6 +2,7 @@ package maful.id.web.ohmovies.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY);
+        Call<MoviesResponse> call = apiService.getNowPlayingMovies(API_KEY);
         call.enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
@@ -77,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.setting_language:
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setClassName("com.android.settings", "com.android.settings.LanguageSettings");
+                Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
                 startActivity(intent);
                 break;
         }
